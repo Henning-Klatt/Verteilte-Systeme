@@ -7,3 +7,5 @@ Grundlagen Verteilter Systeme Übung
 
 - [Sheet 2: ZeroMQ](Sheet%202%20ZeroMQ)
   - [Exercise 1: Number Guessing Game](Sheet%202%20ZeroMQ/src/NumberGuessingGame.java)
+  - [Exercise 2: Factorization Challenge](Sheet%202%20ZeroMQ/src/Test.java)
+  - 
