@@ -18,7 +18,7 @@ public class NumberGuessingGame {
         socket.send("0:1".getBytes(ZMQ.CHARSET), 0);
         byte[] reply = socket.recv(0);
         String string = new String(reply, ZMQ.CHARSET);
-        System.out.println("Received: [" + string + "]");
+        //System.out.println("Received: [" + string + "]");
         Pattern pattern = Pattern.compile("\\d+");
         return pattern.matcher(string)
                 .results()
@@ -29,11 +29,11 @@ public class NumberGuessingGame {
 
     public static Result sendGuess(ZMQ.Socket socket, String gameID, Long guess) {
         String request = (gameID + ":" + guess);
-        System.out.println("Request: [" + request + "]");
+        //System.out.println("Request: [" + request + "]");
         socket.send(request.getBytes(ZMQ.CHARSET), 0);
         byte[] reply = socket.recv(0);
         String string = new String(reply, ZMQ.CHARSET);
-        System.out.println("Received: [" + string + "]");
+        //System.out.println("Received: [" + string + "]");
 
         if(string.contains("too small")){
             return Result.TOO_SMALL;
@@ -42,12 +42,21 @@ public class NumberGuessingGame {
             return Result.TOO_LARGE;
         }
         else if(string.contains("Correct guess after")){
+            System.out.println("Received: [" + string + "]");
+            Pattern pattern = Pattern.compile("The new gameID is (\\d+)");
+            gameID = pattern.matcher(string)
+                    .results()
+                    .map(mr -> mr.group(1))
+                    .findFirst()
+                    .orElse(null);
+            System.out.println("New gameID: " + gameID);
             return Result.CORRECT;
         }
         else if(string.contains("GameID unknown!")){
             return Result.NEW_ID;
         }
         else if(string.contains("This number has been guessed already.")){
+            System.out.println("Received: [" + string + "]");
             return Result.NEW_ID;
         }
         return null;
@@ -74,7 +83,7 @@ public class NumberGuessingGame {
             var result = sendGuess(requestSocket, currentGameID, guess);
             switch(result){
                 case TOO_SMALL:
-                    lowerBound = guess + 2;
+                    lowerBound = guess + 3;
                     break;
                 case TOO_LARGE:
                     upperBound = guess + 1;
@@ -83,12 +92,12 @@ public class NumberGuessingGame {
                     currentGameID = getCurrentGameID(requestSocket);
                     lowerBound = 1;
                     upperBound = (long) Math.pow(2, 63)-1;
-                    break mainloop;
-                case NEW_ID:
+                    break;// mainloop;
+                default:
                     currentGameID = getCurrentGameID(requestSocket);
                     lowerBound = 1;
                     upperBound = (long) Math.pow(2, 63)-1;
-                    break mainloop;
+                    break;
             }
         }
     }
