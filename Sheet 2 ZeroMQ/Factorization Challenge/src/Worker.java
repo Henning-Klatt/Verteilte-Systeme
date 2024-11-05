@@ -4,9 +4,9 @@ import org.zeromq.ZMQ;
 
 import java.math.BigInteger;
 
-public class Worker {
+public class Worker extends Thread {
 
-    public static void main(String[] args) {
+    public void run() {
         ZContext context = new ZContext();
 
         // Create PULL socket to pull challenge from controller
@@ -19,15 +19,15 @@ public class Worker {
         // Connect to the controller PULL socket
         socket_push.bind("tcp://*:12346");
 
-        System.out.println("Connected");
+        System.out.println("[Worker connected]");
 
         while(!Thread.currentThread().isInterrupted()){
             // wait for next request from the controller
             String request = socket_pull.recvStr(0);
-            System.out.println("Received PULL message from controller: " + new String(request));
+            System.out.println("[Worker] Received PULL message from controller: " + new String(request));
 
             BigInteger[] result = Fermat.fermatFactorization(new BigInteger(request));
-            System.out.println(request + " = " + result[0] + " * " + result[1]);
+            System.out.println("[Worker] " + request + " = " + result[0] + " * " + result[1]);
 
             //Send result back to controller via PUSH socket
             socket_push.send((request + ":" + result[0] + ":" + result[1]).getBytes());

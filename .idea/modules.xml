@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Sheet 2 ZeroMQ/Factorization Challenge/Factorization Challenge.iml" filepath="$PROJECT_DIR$/Sheet 2 ZeroMQ/Factorization Challenge/Factorization Challenge.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Sheet 2 ZeroMQ/Number Guessing Game/Number Guessing Game.iml" filepath="$PROJECT_DIR$/Sheet 2 ZeroMQ/Number Guessing Game/Number Guessing Game.iml" />
       <module fileurl="file://$PROJECT_DIR$/Sheet 1 Java Sockets/Sheet 1 Java Sockets.iml" filepath="$PROJECT_DIR$/Sheet 1 Java Sockets/Sheet 1 Java Sockets.iml" />
       <module fileurl="file://$PROJECT_DIR$/Sheet 2 ZeroMQ/Sheet 2 ZeroMQ.iml" filepath="$PROJECT_DIR$/Sheet 2 ZeroMQ/Sheet 2 ZeroMQ.iml" />
       <module fileurl="file://$PROJECT_DIR$/Verteilte-Systeme.iml" filepath="$PROJECT_DIR$/Verteilte-Systeme.iml" />

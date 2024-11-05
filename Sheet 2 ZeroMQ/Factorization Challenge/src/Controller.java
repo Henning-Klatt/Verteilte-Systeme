@@ -2,7 +2,7 @@ import org.zeromq.SocketType;
 import org.zeromq.ZContext;
 import org.zeromq.ZMQ;
 
-public class Controller {
+public class Controller extends Thread {
 
     public static String getChallenge(){
         ZContext context = new ZContext();
@@ -12,7 +12,7 @@ public class Controller {
 
         while(!Thread.currentThread().isInterrupted()){
             String request = subscriber.recvStr(0);
-            System.out.println("Received SUB message from Publisher: " + request);
+            System.out.println("[Controller] Received SUB message from Publisher: " + request);
             return request;
         }
         return "";
@@ -25,10 +25,10 @@ public class Controller {
         requestSocket.send(result.getBytes(ZMQ.CHARSET), 0);
         byte[] reply = requestSocket.recv(0);
         String respone = new String(reply, ZMQ.CHARSET);
-        System.out.println("Received REQ message from publisher: " + respone);
+        System.out.println("[Controller] Received REQ message from publisher: " + respone);
     }
 
-    public static void main(String[] args) throws InterruptedException {
+    public void run() {
 
         ZContext context = new ZContext();
 
@@ -40,6 +40,7 @@ public class Controller {
         ZMQ.Socket socket_pull = context.createSocket(SocketType.PULL);
         socket_pull.connect("tcp://localhost:12346");
 
+        System.out.println("[Controller connected]");
 
         while (!Thread.currentThread().isInterrupted()) {
             // Get a new factorization challenge from the publisher
@@ -50,12 +51,10 @@ public class Controller {
 
             // Receive the solved factorization from worker
             String request = socket_pull.recvStr(0);
-            System.out.println("Received PUSH message from worker: " + request);
+            System.out.println("[Controller] Received PUSH message from worker: " + request);
 
             // Send solved factorization to publisher
             sendResult(request);
-
-            Thread.sleep(2000);
         }
     }
 }
