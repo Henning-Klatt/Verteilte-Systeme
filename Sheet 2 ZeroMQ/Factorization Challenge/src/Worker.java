@@ -17,7 +17,7 @@ public class Worker extends Thread {
         // Create PUSH socket to send result back to controller
         ZMQ.Socket socket_push = context.createSocket(SocketType.PUSH);
         // Connect to the controller PULL socket
-        socket_push.bind("tcp://*:12346");
+        socket_push.connect("tcp://localhost:12346");
 
         System.out.println("[Worker connected]");
 

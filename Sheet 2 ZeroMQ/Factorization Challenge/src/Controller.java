@@ -39,7 +39,7 @@ public class Controller extends Thread {
 
         // Create PULL socket for worker clients
         ZMQ.Socket socket_pull = context.createSocket(SocketType.PULL);
-        socket_pull.connect("tcp://localhost:12346");
+        socket_pull.bind("tcp://*:12346");
 
         System.out.println("[Controller connected]");
 
