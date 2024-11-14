@@ -24,6 +24,9 @@ public class RMIKVStore implements RemoteKVStore {
     }
     @Override
     public String readRemote(String key) throws RemoteException {
+        if (Store.get(key) == null) {
+            throw new RemoteException("Key (" + key + ") not found");
+        }
         return Store.get(key);
     }
 

@@ -24,9 +24,13 @@ public class RMIClient {
             System.out.println(remoteStore.readRemote("key1"));
             remoteStore.writeRemote("key2", "value2");
             remoteStore.removeRemote("key2");
+            // read für nicht existierenden Schlüssel
             System.out.println(remoteStore.readRemote("key2"));
+            // remove für nicht existierenden Schlüssel
+            remoteStore.removeRemote("key2");
         } catch (RemoteException e) {
-            throw new RuntimeException(e);
+            //throw new RuntimeException(e);
+            System.out.println(e.getMessage());
         }
     }
 
