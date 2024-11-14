@@ -4,12 +4,7 @@ import org.zeromq.ZMQ;
 
 public class Controller extends Thread {
 
-    public static String getChallenge(){
-        ZContext context = new ZContext();
-        ZMQ.Socket subscriber = context.createSocket(SocketType.SUB);
-        subscriber.connect("tcp://vs.lxd-vs.uni-ulm.de:27378");
-        subscriber.subscribe("".getBytes());
-
+    public static String getChallenge(ZMQ.Socket subscriber){
         while(!Thread.currentThread().isInterrupted()){
             String request = subscriber.recvStr(0);
             System.out.println("[Controller] Received SUB message from Publisher: " + request);
@@ -18,10 +13,7 @@ public class Controller extends Thread {
         return "";
     }
 
-    public static void sendResult(String result){
-        ZContext context = new ZContext();
-        ZMQ.Socket requestSocket = context.createSocket(SocketType.REQ);
-        requestSocket.connect("tcp://vs.lxd-vs.uni-ulm.de:27379");
+    public static void sendResult(ZMQ.Socket requestSocket, String result){
         requestSocket.send(result.getBytes(ZMQ.CHARSET), 0);
         byte[] reply = requestSocket.recv(0);
         String respone = new String(reply, ZMQ.CHARSET);
@@ -31,6 +23,15 @@ public class Controller extends Thread {
     public void run() {
 
         ZContext context = new ZContext();
+
+        // Create Subscribe Socket to get new challenge from Publisher
+        ZMQ.Socket subscriber = context.createSocket(SocketType.SUB);
+        subscriber.connect("tcp://vs.lxd-vs.uni-ulm.de:27378");
+        subscriber.subscribe("".getBytes());
+
+        // Create Request Socket to send result back to Publisher
+        ZMQ.Socket requestSocket = context.createSocket(SocketType.REQ);
+        requestSocket.connect("tcp://vs.lxd-vs.uni-ulm.de:27379");
 
         // Create PUSH socket for worker clients
         ZMQ.Socket socket_push = context.createSocket(SocketType.PUSH);
@@ -44,7 +45,7 @@ public class Controller extends Thread {
 
         while (!Thread.currentThread().isInterrupted()) {
             // Get a new factorization challenge from the publisher
-            var challenge = getChallenge();
+            var challenge = getChallenge(subscriber);
 
             // Send a message to the workers
             socket_push.send(challenge.getBytes(), 0);
@@ -54,7 +55,7 @@ public class Controller extends Thread {
             System.out.println("[Controller] Received PUSH message from worker: " + request);
 
             // Send solved factorization to publisher
-            sendResult(request);
+            sendResult(requestSocket, request);
         }
     }
 }
