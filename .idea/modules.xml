@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Sheet 3 Java RMI/Client-side Cache/Client-side Cache.iml" filepath="$PROJECT_DIR$/Sheet 3 Java RMI/Client-side Cache/Client-side Cache.iml" />
       <module fileurl="file://$PROJECT_DIR$/Sheet 2 ZeroMQ/Factorization Challenge/Factorization Challenge.iml" filepath="$PROJECT_DIR$/Sheet 2 ZeroMQ/Factorization Challenge/Factorization Challenge.iml" />
       <module fileurl="file://$PROJECT_DIR$/Sheet 2 ZeroMQ/Number Guessing Game/Number Guessing Game.iml" filepath="$PROJECT_DIR$/Sheet 2 ZeroMQ/Number Guessing Game/Number Guessing Game.iml" />
       <module fileurl="file://$PROJECT_DIR$/Sheet 3 Java RMI/Remote Key-Value Store/Remote Key-Value Store.iml" filepath="$PROJECT_DIR$/Sheet 3 Java RMI/Remote Key-Value Store/Remote Key-Value Store.iml" />
