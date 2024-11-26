@@ -1,7 +1,4 @@
 import java.rmi.RemoteException;
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
-import java.rmi.server.UnicastRemoteObject;
 import java.util.HashMap;
 
 public class RMIKVStore implements RemoteKVStore {
@@ -12,15 +9,6 @@ public class RMIKVStore implements RemoteKVStore {
 
         this.Store = new HashMap<String, String>();
 
-        try {
-            Registry registry = LocateRegistry.createRegistry(41337);
-            RemoteKVStore skeleton = (RemoteKVStore) UnicastRemoteObject.exportObject(this, 41338);
-
-            registry.rebind("RMIKVStore", skeleton);
-
-        } catch (RemoteException e) {
-            throw new RuntimeException(e);
-        }
     }
     @Override
     public String readRemote(String key) throws RemoteException {

@@ -5,7 +5,7 @@ import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.HashMap;
 
-public class CachedRMIClient implements Subscriber{
+public class CachedRMIClient extends Thread implements Subscriber{
 
     // Hash-Map für Key-Value-Store: Key - Value
     private final HashMap<String, String> LocalKVStore;
@@ -19,9 +19,9 @@ public class CachedRMIClient implements Subscriber{
         try {
             Registry registry = LocateRegistry.getRegistry(hostname,port);
 
-            // Server Stub für einen SubRMIKVStore erzeugen
-            SubRMIKVStore skeleton = (SubRMIKVStore) UnicastRemoteObject.exportObject(this, 41339);
-            registry.rebind("SubRMIKVStore", skeleton);
+            // Server Stub für einen SubscribeKVStore erzeugen
+            SubscribeKVStore skeleton = (SubscribeKVStore) UnicastRemoteObject.exportObject(this, 41339);
+            registry.rebind("SubscribeKVStore", skeleton);
 
             // Entfernter KVStore laden
             remoteKVStore = (RemoteKVStore) registry.lookup("RemoteKVStore");
@@ -71,4 +71,9 @@ public class CachedRMIClient implements Subscriber{
             return null;
         }
     }
+
+    public void run() {
+        while(true) {}
+    }
+
 }

@@ -4,7 +4,7 @@ import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.HashMap;
 
-public class SubRMIKVStore implements SubscribeKVStore {
+public class SubRMIKVStore extends Thread implements SubscribeKVStore {
 
     // Hash-Map für Key-Value-Store: Key - Value
     private final HashMap<String, String> KVStore;
@@ -86,5 +86,9 @@ public class SubRMIKVStore implements SubscribeKVStore {
                 }
             }
         });
+    }
+
+    public void run() {
+        while(true) {}
     }
 }

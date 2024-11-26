@@ -13,14 +13,19 @@ public class Test {
 
         // SubRMIKVStore Instanz erzeugen
         SubRMIKVStore subRMIKVStore = new SubRMIKVStore(port);
+        subRMIKVStore.start();
+
 
         // zwei CachedRMIClient Instanzen erzeugen
-        CachedRMIClient CachedRMIClient_1 = new CachedRMIClient(hostname, port);
-        CachedRMIClient CachedRMIClient_2 = new CachedRMIClient(hostname, port);
+        CachedRMIClient cachedRMIClient_1 = new CachedRMIClient(hostname, port);
+        CachedRMIClient cachedRMIClient_2 = new CachedRMIClient(hostname, port);
+
+        cachedRMIClient_1.start();
+        cachedRMIClient_2.start();
 
         try {
-            CachedRMIClient_1.write("42", "Die Antwort auf alles");
-            System.out.println(CachedRMIClient_2.read("42"));
+            cachedRMIClient_1.write("42", "Die Antwort auf alles");
+            System.out.println(cachedRMIClient_2.read("42"));
         } catch (RemoteException e) {
             throw new RuntimeException(e);
         }
