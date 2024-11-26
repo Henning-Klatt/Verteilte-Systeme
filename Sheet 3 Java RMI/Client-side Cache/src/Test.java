@@ -25,7 +25,15 @@ public class Test {
 
         try {
             cachedRMIClient_1.write("42", "Die Antwort auf alles");
+            // Erwartet: null (Bekommt: null) (weil: noch nicht subscribed)
             System.out.println(cachedRMIClient_2.read("42"));
+
+            subRMIKVStore.subscribe("42", cachedRMIClient_1);
+            subRMIKVStore.subscribe("42", cachedRMIClient_2);
+            cachedRMIClient_1.write("42", "Die Antwort auf alles");
+            // Erwartet: Die Antwort auf alles (Bekommt: Exception Key (42) not found: Cannot subscribe) (weil: :( )
+            System.out.println(cachedRMIClient_2.read("42"));
+
         } catch (RemoteException e) {
             throw new RuntimeException(e);
         }

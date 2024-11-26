@@ -20,7 +20,7 @@ public class CachedRMIClient extends Thread implements Subscriber{
             Registry registry = LocateRegistry.getRegistry(hostname,port);
 
             // Server Stub für einen SubscribeKVStore erzeugen
-            SubscribeKVStore skeleton = (SubscribeKVStore) UnicastRemoteObject.exportObject(this, 41339);
+            Subscriber skeleton = (Subscriber) UnicastRemoteObject.exportObject(this, 41339);
             registry.rebind("SubscribeKVStore", skeleton);
 
             // Entfernter KVStore laden
@@ -46,9 +46,11 @@ public class CachedRMIClient extends Thread implements Subscriber{
     public void write(String key, String value) throws RemoteException {
         // lokaler Cache
         LocalKVStore.put(key, value);
+        System.out.println("[CachedRMIClient] Added local key: " + key + " value: " + value);
 
         // entfernter KVStore
         remoteKVStore.writeRemote(key, value);
+        System.out.println("[CachedRMIClient] Added remote key: " + key + " value: " + value);
     }
 
     public void remove(String key) throws RemoteException {

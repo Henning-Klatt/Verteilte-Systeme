@@ -31,7 +31,7 @@ public class SubRMIKVStore extends Thread implements SubscribeKVStore {
     @Override
     public void subscribe(String key, Subscriber sub) throws RemoteException {
         // Prüfe, ob Schlüssel vorhanden ist
-        if (KVStore.get(key) != null) {
+        if (SubsStore.get(key) != null) {
             SubsStore.put(key, sub);
         } else{
             throw new RemoteException("Key (" + key + ") not found: Cannot subscribe");
@@ -41,7 +41,7 @@ public class SubRMIKVStore extends Thread implements SubscribeKVStore {
     @Override
     public void unsubscribe(String key, Subscriber sub) throws RemoteException {
         // Prüfe, ob Schlüssel vorhanden ist
-        if (KVStore.get(key) != null) {
+        if (SubsStore.get(key) != null) {
             SubsStore.remove(key);
         } else{
             throw new RemoteException("Key (" + key + ") not found: Cannot unsubscribe");
@@ -58,6 +58,8 @@ public class SubRMIKVStore extends Thread implements SubscribeKVStore {
 
     @Override
     public void writeRemote(String key, String value) throws RemoteException {
+        System.out.println("[SubRMIKVStore] writeRemote key: " + key + " value: " + value);
+
         // Alle Clients mit subscription für key aktualisieren
         SubsStore.forEach((Subkey, sub) -> {
             // Falls Subscriber auf key subscribed hat
@@ -65,6 +67,7 @@ public class SubRMIKVStore extends Thread implements SubscribeKVStore {
                 // Aktualisiere entfernten Key
                 try {
                     sub.updateEntry(key, value);
+                    System.out.println("[SubRMIKVStore] entfernten key aktualisiert: " + key + " value: " + value);
                 } catch (RemoteException e) {
                     throw new RuntimeException(e);
                 }
