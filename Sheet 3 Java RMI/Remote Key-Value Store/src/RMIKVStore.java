@@ -2,15 +2,15 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.HashMap;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class RMIKVStore implements RemoteKVStore {
 
-    private final HashMap<String, String> Store;
+    private final ConcurrentHashMap<String, String> Store;
 
     public RMIKVStore() {
 
-        this.Store = new HashMap<String, String>();
+        this.Store = new ConcurrentHashMap<String, String>();
 
         try {
             Registry registry = LocateRegistry.createRegistry(41337);
