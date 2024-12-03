@@ -11,3 +11,6 @@ Grundlagen Verteilter Systeme Übung
 
 - [Sheet 3: Java RMI](Sheet%203%20Java%20RMI)
   - [Exercise 1: Remote Key-Value Store](Sheet%203%20Java%20RMI/Remote%20Key-Value%20Store/src/RMIClient.java)
+  - [Exercise 2: Client-side Cache](Sheet%203%20Java%20RMI/Client-side%20Cache)
+
+- [Sheet 4: Ein Chat Server mit gRPC](Sheet%204%20ChatServergRPC)
