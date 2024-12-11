@@ -31,4 +31,4 @@ bin/
 ### Henning ###
 Blatt*.pdf
 */build/*
-*/.gradle/*
+/Sheet 4 ChatServergRPC/.gradle/
