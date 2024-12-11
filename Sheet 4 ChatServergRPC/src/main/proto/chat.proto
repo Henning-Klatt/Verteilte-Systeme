@@ -6,8 +6,8 @@ option java_package = "uulm.in.vs.ex4";
 service Chat {
   rpc login (LoginRequest) returns (LoginResponse) {}
   rpc logout (LogoutRequest) returns (LogoutResponse) {}
-
-  /* TODO */
+  rpc chatStream (stream ClientMessages) returns (stream ChatMessages) {}
+  rpc listUsers (GetUsersMessage) returns (UserInfoMessage) {}
 }
 
 enum StatusCode {
@@ -31,5 +31,29 @@ message LogoutRequest {
 
 message LogoutResponse {
   StatusCode status = 1;
+}
+
+message ClientMessages {
+  string sessionID = 1;
+  string message = 2;
+}
+
+message ChatMessages{
+  string username = 1;
+  string message = 2;
+}
+
+message GetUsersMessage {
+  string sessionID = 1;
+}
+
+message UserInfoMessage {
+  StatusCode status = 1;
+  repeated userList list = 2;
+}
+
+message userList {
+  string username = 1;
+  string sessionID = 2;
 }
 

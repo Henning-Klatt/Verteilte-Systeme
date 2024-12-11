@@ -40,9 +40,18 @@ public class ChatServer {
             String username = request.getUsername();
             // Falls username existiert
             if (users.containsKey(username)) {
-                System.out.println("User (" + username + ") logged out.");
-                users.remove(username);
-                logoutResponse.setStatus(StatusCode.OK);
+                String sessionID = request.getSessionID();
+                // Prüfe, ob sessionID stimmt
+                if(users.get(username).equals(sessionID)) {
+                    System.out.println("User (" + username + ") logged out.");
+                    users.remove(username);
+                    logoutResponse.setStatus(StatusCode.OK);
+                }
+                else{
+                    System.out.println("Logout sessionID (" + sessionID + ") not found.");
+                    logoutResponse.setStatus(StatusCode.FAILED);
+                }
+
             } else{
                 System.out.println("Logout User (" + username + ") not found.");
                 logoutResponse.setStatus(StatusCode.FAILED);
