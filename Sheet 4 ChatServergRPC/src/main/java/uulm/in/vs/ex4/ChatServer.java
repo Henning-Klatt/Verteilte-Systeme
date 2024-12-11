@@ -56,7 +56,11 @@ public class ChatServer {
                 System.out.println("Logout User (" + username + ") not found.");
                 logoutResponse.setStatus(StatusCode.FAILED);
             }
-            // TODO
+        }
+
+        @Override
+        public void listUsers(GetUsersMessage request, StreamObserver<UserInfoMessage> responseObserver) {
+
         }
 
         // TODO
