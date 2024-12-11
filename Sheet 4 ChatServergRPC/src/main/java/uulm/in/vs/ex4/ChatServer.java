@@ -36,6 +36,7 @@ public class ChatServer {
             Runtime.getRuntime().addShutdownHook(new Thread(server::shutdown));
 
             // Wait for the server to terminate
+            System.out.println("Server started");
             server.awaitTermination();
         } catch (IOException e) {
             e.printStackTrace();

@@ -30,3 +30,5 @@ bin/
 
 ### Henning ###
 Blatt*.pdf
+*/build/*
+*/.gradle/*
