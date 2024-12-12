@@ -2,12 +2,10 @@ package uulm.in.vs.ex4;
 
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
-import io.grpc.Status;
 import io.grpc.stub.StreamObserver;
 
 import java.util.Iterator;
 import java.util.Scanner;
-import java.util.stream.Stream;
 
 import static java.lang.System.exit;
 

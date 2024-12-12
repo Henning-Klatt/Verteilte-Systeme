@@ -7,7 +7,6 @@ import io.grpc.stub.StreamObserver;
 import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.stream.Stream;
 
 public class ChatServer {
     private final static ConcurrentHashMap<String, String> users = new ConcurrentHashMap<>();
@@ -27,12 +26,12 @@ public class ChatServer {
         public void login(LoginRequest request, StreamObserver<LoginResponse> responseObserver) {
             String username = request.getUsername();
             LoginResponse.Builder loginResponse = LoginResponse.newBuilder();
-            // Username existiert bereits
+            // Username already exists
             if (users.containsKey(username)) {
                 System.out.println("User (" + username + ") is already logged in.");
                 loginResponse.setStatus(StatusCode.FAILED);
             }
-            // Username ist neu
+            // Username is new
             else{
                 UUID uuid = UUID.randomUUID();
                 System.out.println("User (" + username + ") with sessionID: " + uuid.toString() + " logged in.");
@@ -40,8 +39,24 @@ public class ChatServer {
                 loginResponse.setStatus(StatusCode.OK);
                 loginResponse.setSessionID(uuid.toString());
 
-                // TODO: add clients to ChatMessages Stream
-                // observers.add();
+                // Somehow this only works in the chatStream :(
+                // So users need to send their first message before they can start receiving others
+                /* observers.put(username, new StreamObserver<ChatMessages>() {
+                    @Override
+                    public void onNext(ChatMessages chatMessages) {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable throwable) {
+
+                    }
+
+                    @Override
+                    public void onCompleted() {
+
+                    }
+                });*/
 
             }
             responseObserver.onNext(loginResponse.build());
@@ -52,15 +67,15 @@ public class ChatServer {
         public void logout(LogoutRequest request, StreamObserver<LogoutResponse> responseObserver) {
             LogoutResponse.Builder logoutResponse = LogoutResponse.newBuilder();
             String username = request.getUsername();
-            // Falls username existiert
+            // check if username is logged in
             if (users.containsKey(username)) {
                 String sessionID = request.getSessionID();
-                // Prüfe, ob sessionID stimmt
+                // check for correct sessionID
                 if(users.get(username).equals(sessionID)) {
                     System.out.println("User (" + username + ") logged out.");
                     users.remove(username);
+                    observers.remove(username);
                     logoutResponse.setStatus(StatusCode.OK);
-                    // TODO: terminate client chat stream
                 }
                 else{
                     System.out.println("Logout sessionID (" + sessionID + ") not found.");
@@ -143,8 +158,6 @@ public class ChatServer {
                 }
             };
         }
-
-        // TODO
     }
 
     public static void main(String[] args) {
