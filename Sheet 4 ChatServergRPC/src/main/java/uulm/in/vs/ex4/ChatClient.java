@@ -5,6 +5,8 @@ import io.grpc.ManagedChannelBuilder;
 import io.grpc.Status;
 import io.grpc.stub.StreamObserver;
 
+import java.util.Scanner;
+
 public class ChatClient {
 
     private final ChatGrpc.ChatBlockingStub blockingStub;
@@ -46,7 +48,7 @@ public class ChatClient {
 
                 @Override
                 public void onCompleted() {
-
+                    streamObserver.onCompleted();
                 }
             });
 
@@ -64,19 +66,28 @@ public class ChatClient {
         LogoutResponse response = blockingStub.logout(request);
         if(response.getStatus() == StatusCode.OK) {
             System.out.println("Logged out");
+            streamObserver.onCompleted();
         } else{
             System.out.println("Logout failed");
         }
     }
 
     public void listUsers() {
+        GetUsersMessage request = GetUsersMessage.newBuilder()
+                .setSessionID(this.sessionID)
+                .build();
+
+
+
+        // UserInfoMessage response = b
+
         // TODO: implement listUsers
     }
 
     public void sendMessage(String message) {
         ClientMessages.Builder request = ClientMessages.newBuilder();
         request.setMessage(message);
-        // request.setSessionID(this.sessionID);
+        request.setSessionID(this.sessionID);
         streamObserver.onNext(request.build());
         request.clear();
     }
@@ -84,14 +95,23 @@ public class ChatClient {
     public static void main(String[] args) throws InterruptedException {
         ChatClient client = new ChatClient("localhost", 5555);
 
-        String username = "Henning";
-
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter your username: ");
+        String username = scanner.nextLine();
         client.login(username);
-        Thread.sleep(2000);
-        client.sendMessage("Hello World!");
-        Thread.sleep(2000);
-        client.logout(username);
-
+        System.out.println("Type 'logout' to logout and 'list' to list all online users");
+        while(true) {
+            System.out.print("> ");
+            String message = scanner.nextLine();
+            if (message.equals("logout")) {
+                client.logout(username);
+                break;
+            }
+            else if (message.equals("list")) {
+                client.listUsers();
+            } else{
+                client.sendMessage(message);
+            }
+        }
     }
-
 }

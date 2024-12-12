@@ -6,13 +6,25 @@ import io.grpc.ServerBuilder;
 import io.grpc.stub.StreamObserver;
 
 import java.io.IOException;
+import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 public class ChatServer {
     private final static ConcurrentHashMap<String, String> users = new ConcurrentHashMap<>();
 
     public static class ChatService extends ChatGrpc.ChatImplBase {
+
+        public String getUsernameFromSessionID(String sessionID){
+            return users.entrySet()
+                    .stream()
+                    .filter(entry -> Objects.equals(entry.getValue(), sessionID))
+                    .map(Map.Entry::getKey)
+                    .findFirst().orElse("");
+        }
+
         @Override
         public void login(LoginRequest request, StreamObserver<LoginResponse> responseObserver) {
             String username = request.getUsername();
@@ -46,6 +58,7 @@ public class ChatServer {
                     System.out.println("User (" + username + ") logged out.");
                     users.remove(username);
                     logoutResponse.setStatus(StatusCode.OK);
+                    // TODO: terminate client chat stream
                 }
                 else{
                     System.out.println("Logout sessionID (" + sessionID + ") not found.");
@@ -72,8 +85,23 @@ public class ChatServer {
                 public void onNext(ClientMessages clientMessages) {
                     String sessionID = clientMessages.getSessionID();
                     String message = clientMessages.getMessage();
-                    // TODO: Check if user is logged in
-                    System.out.println("Message received from (" + sessionID + "): " + message);
+                    String username = getUsernameFromSessionID(sessionID);
+                    // Check if user is logged in
+                    if(users.containsKey(username)) {
+                        System.out.println("Message received from [" + username + "]: " + message);
+
+                        // Send message to client
+                        // TODO: every client, not just this one
+                        ChatMessages response = ChatMessages.newBuilder()
+                                .setMessage(message)
+                                .setUsername(username)
+                                .build();
+
+                        responseObserver.onNext(response);
+
+                    } else{
+                        System.out.println("Message received from unknown sessionID: [" + sessionID + "]");
+                    }
                 }
 
                 @Override
