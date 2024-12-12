@@ -25,7 +25,7 @@ public class ChatServer {
             // Username ist neu
             else{
                 UUID uuid = UUID.randomUUID();
-                System.out.println("User (" + username + ") with sessionID: " + uuid.toString() + "logged in.");
+                System.out.println("User (" + username + ") with sessionID: " + uuid.toString() + " logged in.");
                 users.put(username, uuid.toString());
                 loginResponse.setStatus(StatusCode.OK);
                 loginResponse.setSessionID(uuid.toString());
@@ -56,6 +56,8 @@ public class ChatServer {
                 System.out.println("Logout User (" + username + ") not found.");
                 logoutResponse.setStatus(StatusCode.FAILED);
             }
+            responseObserver.onNext(logoutResponse.build());
+            responseObserver.onCompleted();
         }
 
         @Override
