@@ -5,14 +5,13 @@ import io.grpc.ServerBuilder;
 import io.grpc.stub.StreamObserver;
 
 import java.io.IOException;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.UUID;
 import java.util.stream.Stream;
 
 public class ChatServer {
     private final static ConcurrentHashMap<String, String> users = new ConcurrentHashMap<>();
+    private final static ConcurrentHashMap<String, StreamObserver> observers = new ConcurrentHashMap<>();
 
     public static class ChatService extends ChatGrpc.ChatImplBase {
 
@@ -40,6 +39,10 @@ public class ChatServer {
                 users.put(username, uuid.toString());
                 loginResponse.setStatus(StatusCode.OK);
                 loginResponse.setSessionID(uuid.toString());
+
+                // TODO: add clients to ChatMessages Stream
+                // observers.add();
+
             }
             responseObserver.onNext(loginResponse.build());
             responseObserver.onCompleted();
@@ -108,15 +111,22 @@ public class ChatServer {
                     if(users.containsKey(username)) {
                         System.out.println("Message received from [" + username + "]: " + message);
 
-                        // Send message to client
-                        // TODO: every client, not just this one
+                        if(!observers.containsKey(username)) {
+                            observers.put(username, responseObserver);
+                        }
+
                         ChatMessages response = ChatMessages.newBuilder()
                                 .setMessage(message)
                                 .setUsername(username)
                                 .build();
 
-                        responseObserver.onNext(response);
-
+                        // Send message to every client
+                        for(Map.Entry<String, StreamObserver> entry : observers.entrySet()) {
+                            String user = entry.getKey();
+                            System.out.println("Sending message to [" + user + "]");
+                            StreamObserver observer = entry.getValue();
+                            observer.onNext(response);
+                        }
                     } else{
                         System.out.println("Message received from unknown sessionID: [" + sessionID + "]");
                     }
