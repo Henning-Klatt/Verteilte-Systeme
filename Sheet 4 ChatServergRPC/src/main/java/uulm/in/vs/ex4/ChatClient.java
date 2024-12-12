@@ -3,11 +3,14 @@ package uulm.in.vs.ex4;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.Status;
+import io.grpc.stub.StreamObserver;
 
 public class ChatClient {
 
     private final ChatGrpc.ChatBlockingStub blockingStub;
     private final ChatGrpc.ChatStub chatStub;
+
+    private StreamObserver<ClientMessages> streamObserver;
 
     String sessionID = null;
 
@@ -27,6 +30,26 @@ public class ChatClient {
         if(response.getStatus() == StatusCode.OK) {
             this.sessionID = response.getSessionID();
             System.out.println("Logged in as " + username + " and got sessionID: " + this.sessionID);
+
+            streamObserver = chatStub.chatStream(new StreamObserver<ChatMessages>() {
+                @Override
+                public void onNext(ChatMessages chatMessages) {
+                    String message = chatMessages.getMessage();
+                    String username = chatMessages.getUsername();
+                    System.out.println("[" + username + "]: " + message);
+                }
+
+                @Override
+                public void onError(Throwable throwable) {
+
+                }
+
+                @Override
+                public void onCompleted() {
+
+                }
+            });
+
         }else{
             System.out.println("Login failed");
         }
@@ -51,7 +74,11 @@ public class ChatClient {
     }
 
     public void sendMessage(String message) {
-        // TODO: implement sendMessage
+        ClientMessages.Builder request = ClientMessages.newBuilder();
+        request.setMessage(message);
+        // request.setSessionID(this.sessionID);
+        streamObserver.onNext(request.build());
+        request.clear();
     }
 
     public static void main(String[] args) throws InterruptedException {
@@ -60,6 +87,8 @@ public class ChatClient {
         String username = "Henning";
 
         client.login(username);
+        Thread.sleep(2000);
+        client.sendMessage("Hello World!");
         Thread.sleep(2000);
         client.logout(username);
 

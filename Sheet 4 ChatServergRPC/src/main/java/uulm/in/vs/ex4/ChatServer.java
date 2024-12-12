@@ -65,6 +65,29 @@ public class ChatServer {
 
         }
 
+        @Override
+        public StreamObserver<ClientMessages> chatStream(StreamObserver<ChatMessages> responseObserver) {
+            return new StreamObserver<ClientMessages>() {
+                @Override
+                public void onNext(ClientMessages clientMessages) {
+                    String sessionID = clientMessages.getSessionID();
+                    String message = clientMessages.getMessage();
+                    // TODO: Check if user is logged in
+                    System.out.println("Message received from (" + sessionID + "): " + message);
+                }
+
+                @Override
+                public void onError(Throwable throwable) {
+
+                }
+
+                @Override
+                public void onCompleted() {
+
+                }
+            };
+        }
+
         // TODO
     }
 
