@@ -1,6 +1,5 @@
 package uulm.in.vs.ex4;
 
-import com.google.rpc.context.AttributeContext;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
 import io.grpc.stub.StreamObserver;
@@ -10,7 +9,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.UUID;
-import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class ChatServer {
     private final static ConcurrentHashMap<String, String> users = new ConcurrentHashMap<>();
@@ -75,7 +74,26 @@ public class ChatServer {
 
         @Override
         public void listUsers(GetUsersMessage request, StreamObserver<UserInfoMessage> responseObserver) {
+            GetUsersMessage.Builder usersMessage = GetUsersMessage.newBuilder();
+            String sessionID = request.getSessionID();
+            String username = getUsernameFromSessionID(sessionID);
+            // Check if user is logged in
+            if(users.containsKey(username)) {
+                System.out.println("[" + username + "] requested user list");
 
+                // Send user list to single client
+                for(Map.Entry<String, String> entry : users.entrySet()) {
+                    String user = entry.getKey();
+
+                    UserInfoMessage response = UserInfoMessage.newBuilder()
+                            .setUsername(user)
+                            .build();
+                    responseObserver.onNext(response);
+                }
+                responseObserver.onCompleted();
+            } else{
+                System.out.println("User (" + sessionID + ") is not logged in but requested user list");
+            }
         }
 
         @Override

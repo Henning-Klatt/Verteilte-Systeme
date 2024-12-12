@@ -5,7 +5,11 @@ import io.grpc.ManagedChannelBuilder;
 import io.grpc.Status;
 import io.grpc.stub.StreamObserver;
 
+import java.util.Iterator;
 import java.util.Scanner;
+import java.util.stream.Stream;
+
+import static java.lang.System.exit;
 
 public class ChatClient {
 
@@ -54,6 +58,7 @@ public class ChatClient {
 
         }else{
             System.out.println("Login failed");
+            exit(0);
         }
     }
 
@@ -77,11 +82,12 @@ public class ChatClient {
                 .setSessionID(this.sessionID)
                 .build();
 
+        Iterator<UserInfoMessage> response = blockingStub.listUsers(request);
 
-
-        // UserInfoMessage response = b
-
-        // TODO: implement listUsers
+        for (Iterator<UserInfoMessage> it = response; it.hasNext(); ) {
+            UserInfoMessage m = it.next();
+            System.out.println(m.getUsername());
+        }
     }
 
     public void sendMessage(String message) {
