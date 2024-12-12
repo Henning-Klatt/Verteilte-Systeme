@@ -74,20 +74,27 @@ public class ChatServer {
                 if(users.get(username).equals(sessionID)) {
                     System.out.println("User (" + username + ") logged out.");
                     users.remove(username);
-                    observers.remove(username);
                     logoutResponse.setStatus(StatusCode.OK);
+                    responseObserver.onNext(logoutResponse.build());
+                    responseObserver.onCompleted();
+                    // Close Chat-Stream to user
+                    observers.get(username).onCompleted();
+                    observers.remove(username);
                 }
                 else{
                     System.out.println("Logout sessionID (" + sessionID + ") not found.");
                     logoutResponse.setStatus(StatusCode.FAILED);
+                    responseObserver.onNext(logoutResponse.build());
+                    responseObserver.onCompleted();
                 }
 
             } else{
                 System.out.println("Logout User (" + username + ") not found.");
                 logoutResponse.setStatus(StatusCode.FAILED);
+                responseObserver.onNext(logoutResponse.build());
+                responseObserver.onCompleted();
             }
-            responseObserver.onNext(logoutResponse.build());
-            responseObserver.onCompleted();
+
         }
 
         @Override
