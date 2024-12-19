@@ -13,4 +13,10 @@ Grundlagen Verteilter Systeme Übung
   - [Exercise 1: Remote Key-Value Store](Sheet%203%20Java%20RMI/Remote%20Key-Value%20Store/src/RMIClient.java)
   - [Exercise 2: Client-side Cache](Sheet%203%20Java%20RMI/Client-side%20Cache)
 
-- [Sheet 4: Ein Chat Server mit gRPC](Sheet%204%20ChatServergRPC)
+- [Sheet 4: Chat Server with gRPC](Sheet%204%20ChatServergRPC)
+  - [ChatServer](Sheet%204%20ChatServergRPC/src/main/java/uulm/in/vs/ex4/ChatServer.java)
+  - [ChatClient](Sheet%204%20ChatServergRPC/src/main/java/uulm/in/vs/ex4/ChatClient.java)
+
+- [Sheet 5: Time](Sheet%205%20Time)
+  - [Exercise 1: Cristians algorithm](Sheet%205%20Time/Cristians%20algorithm)
+  - [Exercise 2: Logical clock](Sheet%205%20Time/Logical%20clock)

@@ -3,12 +3,15 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Sheet 3 Java RMI/Client-side Cache/Client-side Cache.iml" filepath="$PROJECT_DIR$/Sheet 3 Java RMI/Client-side Cache/Client-side Cache.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Sheet 5 Time/Cristians algorithm/Cristians algorithm.iml" filepath="$PROJECT_DIR$/Sheet 5 Time/Cristians algorithm/Cristians algorithm.iml" />
       <module fileurl="file://$PROJECT_DIR$/Sheet 2 ZeroMQ/Factorization Challenge/Factorization Challenge.iml" filepath="$PROJECT_DIR$/Sheet 2 ZeroMQ/Factorization Challenge/Factorization Challenge.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Sheet 5 Time/Logical clock/Logical clock.iml" filepath="$PROJECT_DIR$/Sheet 5 Time/Logical clock/Logical clock.iml" />
       <module fileurl="file://$PROJECT_DIR$/Sheet 2 ZeroMQ/Number Guessing Game/Number Guessing Game.iml" filepath="$PROJECT_DIR$/Sheet 2 ZeroMQ/Number Guessing Game/Number Guessing Game.iml" />
       <module fileurl="file://$PROJECT_DIR$/Sheet 3 Java RMI/Remote Key-Value Store/Remote Key-Value Store.iml" filepath="$PROJECT_DIR$/Sheet 3 Java RMI/Remote Key-Value Store/Remote Key-Value Store.iml" />
       <module fileurl="file://$PROJECT_DIR$/Sheet 1 Java Sockets/Sheet 1 Java Sockets.iml" filepath="$PROJECT_DIR$/Sheet 1 Java Sockets/Sheet 1 Java Sockets.iml" />
       <module fileurl="file://$PROJECT_DIR$/Sheet 2 ZeroMQ/Sheet 2 ZeroMQ.iml" filepath="$PROJECT_DIR$/Sheet 2 ZeroMQ/Sheet 2 ZeroMQ.iml" />
       <module fileurl="file://$PROJECT_DIR$/Sheet 3 Java RMI/Sheet 3 Java RMI.iml" filepath="$PROJECT_DIR$/Sheet 3 Java RMI/Sheet 3 Java RMI.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Sheet 5 Time/Sheet 5 Time.iml" filepath="$PROJECT_DIR$/Sheet 5 Time/Sheet 5 Time.iml" />
       <module fileurl="file://$PROJECT_DIR$/Verteilte-Systeme.iml" filepath="$PROJECT_DIR$/Verteilte-Systeme.iml" />
     </modules>
   </component>
