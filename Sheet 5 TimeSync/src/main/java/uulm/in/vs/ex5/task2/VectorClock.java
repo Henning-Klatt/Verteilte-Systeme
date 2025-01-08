@@ -1,3 +1,5 @@
+package uulm.in.vs.ex5.task2;
+
 import java.util.Collection;
 import java.util.Optional;
 
@@ -17,6 +19,7 @@ public class VectorClock {
     */
     public long[] getTime() {
         // TODO
+        return new long[0];
     }
 
     /**
@@ -24,6 +27,7 @@ public class VectorClock {
     */
     public long increment() {
         // TODO
+        return 0;
     }
 
     /**
@@ -31,14 +35,17 @@ public class VectorClock {
     */
     public long getTime(int id) {
         // TODO
+        return 0;
     }
 
     public long merge(VectorClock b) throws IllegalArgumentException{
         // TODO
+        return 0;
     }
 
     public long size() {
         // TODO
+        return 0;
     }
 
     /**
@@ -47,6 +54,7 @@ public class VectorClock {
     */
     public boolean geq(VectorClock b) throws IllegalArgumentException {
         // TODO
+        return false;
     }
 
     /**
@@ -56,9 +64,11 @@ public class VectorClock {
      */
     public static Optional<Integer> compare(VectorClock a, VectorClock b) throws IllegalArgumentException {
         // TODO
+        return Optional.empty();
     }
 
     public boolean equals(VectorClock b) {
         // TODO
+        return false;
     }
 }

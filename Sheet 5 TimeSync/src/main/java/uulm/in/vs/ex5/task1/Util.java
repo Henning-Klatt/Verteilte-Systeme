@@ -1,3 +1,5 @@
+package uulm.in.vs.ex5.task1;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 

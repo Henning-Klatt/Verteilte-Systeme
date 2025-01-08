@@ -11,8 +11,9 @@
       <module fileurl="file://$PROJECT_DIR$/Sheet 1 Java Sockets/Sheet 1 Java Sockets.iml" filepath="$PROJECT_DIR$/Sheet 1 Java Sockets/Sheet 1 Java Sockets.iml" />
       <module fileurl="file://$PROJECT_DIR$/Sheet 2 ZeroMQ/Sheet 2 ZeroMQ.iml" filepath="$PROJECT_DIR$/Sheet 2 ZeroMQ/Sheet 2 ZeroMQ.iml" />
       <module fileurl="file://$PROJECT_DIR$/Sheet 3 Java RMI/Sheet 3 Java RMI.iml" filepath="$PROJECT_DIR$/Sheet 3 Java RMI/Sheet 3 Java RMI.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Sheet 5 Time/Sheet 5 Time.iml" filepath="$PROJECT_DIR$/Sheet 5 Time/Sheet 5 Time.iml" />
       <module fileurl="file://$PROJECT_DIR$/Verteilte-Systeme.iml" filepath="$PROJECT_DIR$/Verteilte-Systeme.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Sheet 5 TimeSync/src/main/main.iml" filepath="$PROJECT_DIR$/Sheet 5 TimeSync/src/main/main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Sheet 5 TimeSync/src/test/test.iml" filepath="$PROJECT_DIR$/Sheet 5 TimeSync/src/test/test.iml" />
     </modules>
   </component>
 </project>
