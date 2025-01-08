@@ -27,7 +27,7 @@ public class SynchronizedClock implements Clock{
         String string = new String(reply, ZMQ.CHARSET);
         long start = Long.parseLong(string);
         AtomicLong counter = new AtomicLong(start);
-        System.out.println("Server sent time: " + counter.get());
+        //System.out.println("Server sent time: " + counter.get());
         return counter;
     }
 
@@ -46,15 +46,13 @@ public class SynchronizedClock implements Clock{
 
             if(finishedRequests.get() < numRequests) {
                 AtomicLong servertime = getServerTime(requestSocket);
-                clock.setTimeToFuture(servertime.get());
+                clock.setTimeToFuture(servertime.get() + (2/2));
                 finishedRequests.getAndIncrement();
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
                 }
             }
-
-            System.out.println(finishedRequests.get());
         }, initDelay, period, TimeUnit.MILLISECONDS);
 
         // TODO
@@ -64,12 +62,48 @@ public class SynchronizedClock implements Clock{
     public SynchronizedClock(ZContext context, String host, int numRequests, long start) {
         // TODO
         clock.setTimeToFuture(start);
+        ZMQ.Socket requestSocket = context.createSocket(SocketType.REQ);
+        requestSocket.connect(host);
+
+        AtomicInteger finishedRequests = new AtomicInteger(0);
+
+        ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
+        int initDelay = 500;
+        int period = 1000;
+        Future<?> scheduledFuture = executor.scheduleAtFixedRate(() -> {
+
+            if(finishedRequests.get() < numRequests) {
+                AtomicLong servertime = getServerTime(requestSocket);
+
+                long diff = servertime.get() - clock.getTime();
+
+                if(diff > 1000000000) {
+                    clock.setVeryFastSpeed();
+                    clock.increaseSpeed();
+                } else if(diff > -1000000000) {
+                    clock.setVerySlowSpeed();
+                    clock.decreaseSpeed();
+                } else if(diff > 100000) {
+                    clock.setFastSpeed();
+                    clock.increaseSpeed();
+                } else if(diff > -100000) {
+                    clock.setSlowSpeed();
+                    clock.decreaseSpeed();
+                } else if(diff > 1000) {
+                    clock.setNormalSpeed();
+                }
+
+                finishedRequests.getAndIncrement();
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                }
+            }
+        }, initDelay, period, TimeUnit.MILLISECONDS);
 
     }
 
-    // Bestimmung des Abstands zu Ihrer derzeitigen Uhrzeit bieten
-    public long getTime() { 
-        // TODO
+    public long getTime() {
         return clock.getTime();
     }
 }

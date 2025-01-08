@@ -17,6 +17,6 @@ Grundlagen Verteilter Systeme Übung
   - [ChatServer](Sheet%204%20ChatServergRPC/src/main/java/uulm/in/vs/ex4/ChatServer.java)
   - [ChatClient](Sheet%204%20ChatServergRPC/src/main/java/uulm/in/vs/ex4/ChatClient.java)
 
-- [Sheet 5: Time](Sheet%205%20Time)
-  - [Exercise 1: Cristians algorithm](Sheet%205%20Time/Cristians%20algorithm)
-  - [Exercise 2: Logical clock](Sheet%205%20Time/Logical%20clock)
+- [Sheet 5: Time](Sheet%205%20TimeSync/src/main/java/uulm/in/vs/ex5)
+  - [Exercise 1: Cristians algorithm](Sheet%205%20TimeSync/src/main/java/uulm/in/vs/ex5/task1)
+  - [Exercise 2: Logical clock](Sheet%205%20TimeSync/src/main/java/uulm/in/vs/ex5/task2)
