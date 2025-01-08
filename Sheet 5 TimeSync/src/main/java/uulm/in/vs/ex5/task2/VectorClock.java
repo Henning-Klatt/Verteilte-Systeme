@@ -1,41 +1,47 @@
 package uulm.in.vs.ex5.task2;
 
-import java.util.Collection;
-import java.util.Optional;
+import java.util.*;
 
 public class VectorClock {
-        // TODO
+
+    List<Long> vector;
+    int processID;
 
     public VectorClock(Collection<Long> C, int id) {
-        // TODO
+        this.vector = (List<Long>) C;
+        this.processID = id;
     }
 
     public VectorClock(int size, int id){
-        // TODO
+        this.vector = new ArrayList<Long>(size);
+
+        for (int i = 0; i < size; i++) {
+            this.vector.add(0L);
+        }
+
+        this.processID = id;
     }
 
     /**
     * Returns all times in the vector
     */
     public long[] getTime() {
-        // TODO
-        return new long[0];
+        return vector.stream().mapToLong(l -> l).toArray();
     }
 
     /**
     * Also returns incremented time for own processID
     */
     public long increment() {
-        // TODO
-        return 0;
+        this.vector.set(this.processID, this.getTime(this.processID) + 1);
+        return this.getTime(this.processID);
     }
 
     /**
     * Returns time of given id
     */
     public long getTime(int id) {
-        // TODO
-        return 0;
+        return this.vector.get(id);
     }
 
     public long merge(VectorClock b) throws IllegalArgumentException{
@@ -44,8 +50,7 @@ public class VectorClock {
     }
 
     public long size() {
-        // TODO
-        return 0;
+        return this.vector.size();
     }
 
     /**
@@ -53,8 +58,12 @@ public class VectorClock {
     * IllegalArgumentException is thrown when vectors are of different size.
     */
     public boolean geq(VectorClock b) throws IllegalArgumentException {
-        // TODO
-        return false;
+        if(this.vector.size() != b.vector.size()) throw new IllegalArgumentException();
+
+        for(int i = 0; i < this.vector.size(); i++){
+            if(this.vector.get(i) < b.vector.get(i)) return false;
+        }
+        return true;
     }
 
     /**
@@ -68,7 +77,12 @@ public class VectorClock {
     }
 
     public boolean equals(VectorClock b) {
-        // TODO
-        return false;
+        if(this.vector.size() != b.vector.size()) return false;
+
+        for(int i = 0; i < this.vector.size(); i++){
+            if(!Objects.equals(this.vector.get(i), b.vector.get(i))) return false;
+        }
+
+        return true;
     }
 }
