@@ -94,8 +94,24 @@ public class VectorClock {
      * @throws IllegalArgumentException If Vectors are of different size
      */
     public static Optional<Integer> compare(VectorClock a, VectorClock b) throws IllegalArgumentException {
-        // TODO
-        return Optional.empty();
+        if(a.vector.size() != b.vector.size()) throw new IllegalArgumentException();
+
+        Optional<Integer> result = Optional.empty();
+        if (a.equals(b)) {
+            return Optional.of(0);
+        }
+
+        int size = 0;
+        for(int i = 0; i < a.vector.size(); i++){
+            if(a.getTime(i) > b.getTime(i)){
+                size += a.getTime(i)-b.getTime(i);
+            } else{
+                size -= b.getTime(i)-a.getTime(i);
+            }
+        }
+        if(size == 0) return Optional.empty();
+
+        return Optional.of(size);
     }
 
     public boolean equals(VectorClock b) {
