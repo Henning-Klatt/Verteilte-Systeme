@@ -44,7 +44,6 @@ class VectorTest {
         x = new VectorClock(5,0);
 
         assertEquals(2, b.merge(a));
-        System.out.println(b.vector);
         assertTrue(Arrays.equals(c, b.getTime()));
         assertThrows(IllegalArgumentException.class, () -> {x.merge(a);});
     }

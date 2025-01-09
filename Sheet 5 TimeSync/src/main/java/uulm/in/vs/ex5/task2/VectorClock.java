@@ -50,18 +50,23 @@ public class VectorClock {
         ArrayList<Long> result = new ArrayList<Long>(b.vector.size());
 
         for(int i = 0; i < this.vector.size(); i++){
-            if(this.getTime(i) <= b.getTime(i)){
-                result.add(b.getTime(i)+1);
-            } else{
-                if(i == this.processID){
+            // If own component
+            if(i == this.processID){
+                if(b.getTime(i) >= this.getTime(i)){
+                    result.add(b.getTime(i)+1);
+                } else{
                     result.add(this.getTime(i)+1);
+                }
+            }
+            // Other components
+            else{
+                if(b.getTime(i) >= this.getTime(i)){
+                    result.add(b.getTime(i));
                 } else{
                     result.add(this.getTime(i));
                 }
             }
-            // TODO
         }
-
         this.vector = result;
         return result.get(this.processID);
     }
@@ -78,7 +83,7 @@ public class VectorClock {
         if(this.vector.size() != b.vector.size()) throw new IllegalArgumentException();
 
         for(int i = 0; i < this.vector.size(); i++){
-            if(this.vector.get(i) < b.vector.get(i)) return false;
+            if(this.getTime(i) < b.getTime(i)) return false;
         }
         return true;
     }
