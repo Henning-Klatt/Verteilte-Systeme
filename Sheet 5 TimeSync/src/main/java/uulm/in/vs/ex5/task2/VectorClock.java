@@ -45,8 +45,25 @@ public class VectorClock {
     }
 
     public long merge(VectorClock b) throws IllegalArgumentException{
-        // TODO
-        return 0;
+        if(this.vector.size() != b.vector.size()) throw new IllegalArgumentException();
+
+        ArrayList<Long> result = new ArrayList<Long>(b.vector.size());
+
+        for(int i = 0; i < this.vector.size(); i++){
+            if(this.getTime(i) <= b.getTime(i)){
+                result.add(b.getTime(i)+1);
+            } else{
+                if(i == this.processID){
+                    result.add(this.getTime(i)+1);
+                } else{
+                    result.add(this.getTime(i));
+                }
+            }
+            // TODO
+        }
+
+        this.vector = result;
+        return result.get(this.processID);
     }
 
     public long size() {
