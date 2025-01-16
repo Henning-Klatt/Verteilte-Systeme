@@ -34,8 +34,7 @@ public class TotallyOrderedTimestamp implements Comparable<TotallyOrderedTimesta
     }
 
     public BigInteger asBigInteger() {
-        // ToDo: selbe Ordnung abbilden wie die Zeitstempel
-        return BigInteger.valueOf(timestamp);
+        return BigInteger.valueOf(timestamp*100 + counter*10 + clock_pid);
     }
 
     public long getTimestamp() {

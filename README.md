@@ -20,3 +20,7 @@ Grundlagen Verteilter Systeme Übung
 - [Sheet 5: Time](Sheet%205%20TimeSync/src/main/java/uulm/in/vs/ex5)
   - [Exercise 1: Cristians algorithm](Sheet%205%20TimeSync/src/main/java/uulm/in/vs/ex5/task1)
   - [Exercise 2: Logical clock](Sheet%205%20TimeSync/src/main/java/uulm/in/vs/ex5/task2)
+
+- [Sheet 6: TimeStamps](Sheet%206%20TimeStamps)
+  - [Exercise 1: Konsistenzmodelle](Sheet%206%20TimeStamps/Verteilte%20Systeme%20U%CC%88bung%206.pdf)
+  - [Exercise 2: Total Geordnete Zeitstempel](Sheet%206%20TimeStamps/src/main/java/uulm/in/vs/ex6)
