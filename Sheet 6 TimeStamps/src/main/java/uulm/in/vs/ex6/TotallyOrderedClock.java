@@ -24,7 +24,7 @@ public class TotallyOrderedClock {
             }
         }
 
-        var tot = new TotallyOrderedTimestamp(time, timestamps.size());
+        var tot = new TotallyOrderedTimestamp(time, timestamps.size(), PID);
         timestamps.add(tot);
 
         return tot;

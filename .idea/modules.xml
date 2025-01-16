@@ -13,9 +13,9 @@
       <module fileurl="file://$PROJECT_DIR$/Sheet 3 Java RMI/Sheet 3 Java RMI.iml" filepath="$PROJECT_DIR$/Sheet 3 Java RMI/Sheet 3 Java RMI.iml" />
       <module fileurl="file://$PROJECT_DIR$/Verteilte-Systeme.iml" filepath="$PROJECT_DIR$/Verteilte-Systeme.iml" />
       <module fileurl="file://$PROJECT_DIR$/Sheet 5 TimeSync/src/main/main.iml" filepath="$PROJECT_DIR$/Sheet 5 TimeSync/src/main/main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/TimeStamps_Vorlage/src/main/main2.iml" filepath="$PROJECT_DIR$/TimeStamps_Vorlage/src/main/main2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Sheet 6 TimeStamps/src/main/main2.iml" filepath="$PROJECT_DIR$/Sheet 6 TimeStamps/src/main/main2.iml" />
       <module fileurl="file://$PROJECT_DIR$/Sheet 5 TimeSync/src/test/test.iml" filepath="$PROJECT_DIR$/Sheet 5 TimeSync/src/test/test.iml" />
-      <module fileurl="file://$PROJECT_DIR$/TimeStamps_Vorlage/src/test/test2.iml" filepath="$PROJECT_DIR$/TimeStamps_Vorlage/src/test/test2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Sheet 6 TimeStamps/src/test/test2.iml" filepath="$PROJECT_DIR$/Sheet 6 TimeStamps/src/test/test2.iml" />
     </modules>
   </component>
 </project>
