@@ -1,9 +1,12 @@
 package uulm.in.vs.time;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class TotallyOrderedClock {
     private long PID;
 
-    // TODO
+    List<TotallyOrderedTimestamp> timestamps = new ArrayList<TotallyOrderedTimestamp>();
 
     public TotallyOrderedClock(long PID) {
         this.PID = PID;
@@ -14,6 +17,17 @@ public class TotallyOrderedClock {
     }
 
     public TotallyOrderedTimestamp createTimestamp(long time) throws IllegalArgumentException {
-    	// TODO
+        // Zurückliegende Zeit prüfen - Gibt es bereits einen kleineren Timestamp?
+        for (TotallyOrderedTimestamp timestamp : timestamps) {
+            if(time < timestamp.getTimestamp()){
+                throw new IllegalArgumentException("Timestamp must be in the future");
+            }
+        }
+
+        var tot = new TotallyOrderedTimestamp();
+        tot.timestamp = time;
+        timestamps.add(tot);
+
+        return tot;
     }
 }
