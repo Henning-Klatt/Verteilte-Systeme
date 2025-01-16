@@ -13,7 +13,7 @@ public class Time {
      */
     public static void main(String[] args) {
         ZContext context = new ZContext();
-        String host = "tcp://vs.lxd-vs.uni-ulm.de:3322";
+        String host = "vs.lxd-vs.uni-ulm.de:3322";
 
         // Clock that synchronizes at the start
         Clock initial = new SynchronizedClock(context, host, 5);

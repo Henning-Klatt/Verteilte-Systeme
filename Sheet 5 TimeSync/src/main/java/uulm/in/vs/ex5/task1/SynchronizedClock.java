@@ -17,7 +17,6 @@ import java.util.concurrent.atomic.AtomicLong;
  */
 
 public class SynchronizedClock implements Clock{
-    // TODO
 
     BaseClock clock = new BaseClock();
 
@@ -31,11 +30,11 @@ public class SynchronizedClock implements Clock{
         return counter;
     }
 
-
+    // Constructor requests server time
     public SynchronizedClock(ZContext context, String host, int numRequests) {
 
         ZMQ.Socket requestSocket = context.createSocket(SocketType.REQ);
-        requestSocket.connect(host);
+        requestSocket.connect("tcp://" + host);
 
         AtomicInteger finishedRequests = new AtomicInteger(0);
 
@@ -54,16 +53,14 @@ public class SynchronizedClock implements Clock{
                 }
             }
         }, initDelay, period, TimeUnit.MILLISECONDS);
-
-        // TODO
     }
 
-    // Konstruktor Uhr selbst zu initialisieren
+    // Constructor initialises with given start time value
     public SynchronizedClock(ZContext context, String host, int numRequests, long start) {
         // TODO
         clock.setTimeToFuture(start);
         ZMQ.Socket requestSocket = context.createSocket(SocketType.REQ);
-        requestSocket.connect(host);
+        requestSocket.connect("tcp://" + host);
 
         AtomicInteger finishedRequests = new AtomicInteger(0);
 
@@ -73,9 +70,7 @@ public class SynchronizedClock implements Clock{
         Future<?> scheduledFuture = executor.scheduleAtFixedRate(() -> {
 
             if(finishedRequests.get() < numRequests) {
-                AtomicLong servertime = getServerTime(requestSocket);
-
-                long diff = servertime.get() - clock.getTime();
+                long diff = getDiff(getServerTime(requestSocket));
 
                 if(diff > 1000000000) {
                     clock.setVeryFastSpeed();
@@ -101,6 +96,11 @@ public class SynchronizedClock implements Clock{
             }
         }, initDelay, period, TimeUnit.MILLISECONDS);
 
+    }
+
+    // Difference between given and internal time
+    public long getDiff(AtomicLong input) {
+        return input.get() - clock.getTime();
     }
 
     public long getTime() {

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="ec0f0c5c-0f4d-41b3-8a64-87fba5c1088a" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../Blatt2/Aufgabe02/FactorizationChallenge/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Blatt2/Aufgabe02/FactorizationChallenge/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Blatt5/TimeSyncSolution/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Blatt5/TimeSyncSolution/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TotallyOrderedTimestamps/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../TotallyOrderedTimestamps/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TotallyOrderedTimestamps/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../TotallyOrderedTimestamps/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TotallyOrderedTimestamps/src/main/java/time/TotallyOrderedClock.java" beforeDir="false" afterPath="$PROJECT_DIR$/../TotallyOrderedTimestamps/src/main/java/time/TotallyOrderedClock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TotallyOrderedTimestamps/src/test/java/time/TotallyOrderedClockTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../TotallyOrderedTimestamps/src/test/java/time/TotallyOrderedClockTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TotallyOrderedTimestamps/src/test/java/time/TotallyOrderedTimestampTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../TotallyOrderedTimestamps/src/test/java/time/TotallyOrderedTimestampTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TotallyOrderedTimestamps/target/classes/time/TotallyOrderedClock.class" beforeDir="false" afterPath="$PROJECT_DIR$/../TotallyOrderedTimestamps/target/classes/time/TotallyOrderedClock.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TotallyOrderedTimestamps/target/classes/time/TotallyOrderedTimestamp.class" beforeDir="false" afterPath="$PROJECT_DIR$/../TotallyOrderedTimestamps/target/classes/time/TotallyOrderedTimestamp.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TotallyOrderedTimestamps/target/test-classes/time/TotallyOrderedClockTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/../TotallyOrderedTimestamps/target/test-classes/time/TotallyOrderedClockTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Blatt7/Verteilter_KVStore/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Blatt7/Verteilter_KVStore/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Blaetter/Blatt6.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Blaetter/Blatt6.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Blaetter/Blatt7.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Blaetter/Blatt7.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Folien/Uebung7.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Folien/Uebung7.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Folien/Uebung8.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Folien/Uebung8.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Tex/6/worksheet.tex" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Tex/6/worksheet.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Tex/7/img/causalKV.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Tex/7/img/causalKV.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Tex/7/slides.tex" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Tex/7/slides.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Tex/7/worksheet.tex" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Tex/7/worksheet.tex" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="23cC7rWpwwzHJUWkoqQX2RYNUZo" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/java/in/vs/time" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ec0f0c5c-0f4d-41b3-8a64-87fba5c1088a" name="Changes" comment="" />
+      <created>1642023823245</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1642023823245</updated>
+      <workItem from="1642023825133" duration="93000" />
+      <workItem from="1673356897481" duration="709000" />
+      <workItem from="1673428766406" duration="597000" />
+      <workItem from="1673528944157" duration="1646000" />
+      <workItem from="1674208925253" duration="597000" />
+      <workItem from="1674212355702" duration="598000" />
+      <workItem from="1674553451297" duration="30000" />
+      <workItem from="1704276955690" duration="1104000" />
+      <workItem from="1704791032640" duration="2246000" />
+      <workItem from="1705598831068" duration="604000" />
+      <workItem from="1705925795543" duration="77000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
